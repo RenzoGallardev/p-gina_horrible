@@ -1,67 +1,121 @@
 <html>
 <head>
-<title>Login super seguro</title>
+<title>Login super seguro 2.0</title>
+<style>
+  body { background-color: #FFFFF0; font-family: "Comic Sans MS", cursive, sans-serif; }
+  .caja-fea { width: 600px; background-color: #FFFDD0; border: 7px dotted yellow; margin: 0 auto; padding: 20px; }
+  .rojo { color: red; font-weight: bold; }
+  input { background-color: white; color: red; border: 2px solid yellow; }
+  
+  #teclado_maldito {
+      display: none;
+      position: absolute;
+      top: 150px;
+      left: 100px;
+      background-color: yellow;
+      padding: 15px;
+      width: 300px;
+      border: 5px solid red;
+      z-index: 999;
+  }
+  
+  #tyc {
+      width: 100%;
+      height: 80px;
+      overflow-y: scroll;
+      background: white;
+      color: orange;
+      font-size: 10px;
+      border: 1px solid red;
+  }
+</style>
 </head>
-<body style="background-color: #FFFFF0;">
+<body>
 
-<br>
-<center>
-<div style="width: 500px; background-color: #FFFDD0; border: 5px solid yellow;">
-<h1><font color="red">INGRESA TUS DATOS</font></h1>
+<div id="pantalla1" class="caja-fea">
+    <center><h1><font color="red">INGRESA TUS DATOS (SI PUEDES)</font></h1></center>
 
-<font color="red"><b>Nombre:</b></font><br>
-<input type="text" id="n1" readonly onclick="foco='n1'" style="background-color: white; color: red; width: 250px;">
-<br><br>
+    <span class="rojo">Nombre:</span><br>
+    <input type="text" id="n1" readonly onclick="mostrarTeclado('n1')" style="width: 250px;"><br><br>
 
-<font color="red"><b>Clave Secreta:</b></font><br>
-<input type="text" id="clv" readonly onclick="foco='clv'" style="background-color: white; color: red; width: 250px;">
-<br><br>
+    <span class="rojo">Clave Secreta:</span><br>
+    <input type="password" id="clv" readonly onclick="mostrarTeclado('clv')" style="width: 250px;"><br><br>
 
-<font color="red"><b>Tu edad (Gira el dado de 100 caras hasta que salga tu edad):</b></font><br>
-<h1 id="edad_num" style="color:red">0</h1>
-<button onclick="tirarDado()" type="button" style="background-color: red; color: yellow; width: 150px; height: 40px;">GIRAR DADO</button>
-<br><br>
+    <span class="rojo">Tu edad (Tira el dado de 100 caras):</span><br>
+    <h1 id="edad_num" style="color:red; margin: 5px 0;">0</h1>
+    <button onclick="tirarDado()" type="button" style="background-color: red; color: yellow;">GIRAR DADO</button>
+    <br><br>
 
-<div style="background-color: yellow; padding: 10px; width: 400px;">
-<font color="red"><b>TECLADO OBLIGATORIO:</b></font><br><br>
-<button onclick="tecla('P')" type="button">P</button>
-<button onclick="tecla('M')" type="button">M</button>
-<button onclick="tecla('Z')" type="button">Z</button>
-<button onclick="tecla('A')" type="button">A</button>
-<button onclick="tecla('Q')" type="button">Q</button>
-<button onclick="tecla('W')" type="button">W</button>
-<button onclick="tecla('X')" type="button">X</button>
-<button onclick="tecla('S')" type="button">S</button>
-<button onclick="tecla('E')" type="button">E</button>
-<button onclick="tecla('D')" type="button">D</button>
-<button onclick="tecla('C')" type="button">C</button>
-<button onclick="tecla('R')" type="button">R</button>
-<button onclick="tecla('F')" type="button">F</button>
-<button onclick="tecla('V')" type="button">V</button>
-<button onclick="tecla('T')" type="button">T</button>
-<button onclick="tecla('G')" type="button">G</button>
-<button onclick="tecla('B')" type="button">B</button>
-<button onclick="tecla('Y')" type="button">Y</button>
-<button onclick="tecla('H')" type="button">H</button>
-<button onclick="tecla('N')" type="button">N</button>
-<button onclick="tecla('U')" type="button">U</button>
-<button onclick="tecla('J')" type="button">J</button>
-<button onclick="tecla('I')" type="button">I</button>
-<button onclick="tecla('K')" type="button">K</button>
-<button onclick="tecla('O')" type="button">O</button>
-<button onclick="tecla('L')" type="button">L</button>
+    <span class="rojo">Numero de telefono:</span> <span id="num_tel" class="rojo">5000000000</span><br>
+    <input type="range" id="telefono" min="0000000000" max="9999999999" value="5000000000" oninput="actualizarTel()" style="width: 100%;">
+    <br><br>
+
+    <span class="rojo">País (Ordenado por m2 de territorio):</span><br>
+    <select id="pais">
+        <option>El Vaticano</option>
+        <option>Mónaco</option>
+        <option>Nauru</option>
+        <option>Tuvalu</option>
+        <option>San Marino</option>
+        <option>Venezuela</option>
+        <option>Rusia</option>
+    </select>
+    <br><br>
+
+    <span class="rojo">Terminos y condiciones (Lectura obligatoria):</span><br>
+    <div id="tyc" onscroll="trampaScroll()">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+        Debes leer todo esto para continuar.<br>
+        bla bla bla bla bla bla.<br>
+        Seguimos escribiendo cosas sin sentido.<br>
+        Casi llegas al final...<br>
+        Un poco mas...<br>
+        Ups, te caíste.<br>
+        Si logras leer esto, eres un hacker.<br>
+        Aceptas vender tu alma al sistema.<br>
+        Fin de los terminos.
+    </div>
+    <br>
+
+    <span class="rojo">CAPTCHA: Cuanto es (5000 * 0) + 1?</span><br>
+    <input type="text" id="captcha" onclick="mostrarTeclado('captcha')" readonly>
+    <br><br>
+
+    <button id="btn_entrar" onmouseover="huir()" onclick="entrar()" type="button" style="background-color: red; color: white; width: 200px; height: 50px; position: relative;">ENTRAR AL SISTEMA</button>
 </div>
-<br><br>
 
-<button onclick="entrar()" type="button" style="background-color: red; color: white; width: 200px; height: 50px;">ENTRAR AL SISTEMA</button>
-<br><br>
-
+<div id="teclado_maldito">
+    <span class="rojo">TECLADO:</span><br>
+    <button onclick="tecla('P')">P</button> <button onclick="tecla('M')">M</button> <button onclick="tecla('Z')">Z</button>
+    <button onclick="tecla('A')">A</button> <button onclick="tecla('Q')">Q</button> <button onclick="tecla('W')">W</button>
+    <button onclick="tecla('X')">X</button> <button onclick="tecla('S')">S</button> <button onclick="tecla('E')">E</button>
+    <button onclick="tecla('1')">1</button> <button onclick="tecla('0')">0</button> <button onclick="tecla('5')">5</button>
+    <br><br>
+    <button onclick="cerrarTeclado()" style="font-size: 8px;">cerrar teclado</button>
 </div>
-</center>
+
+<div id="pantalla2" class="caja-fea" style="display: none;">
+    <center>
+        <h1><font color="red">¡BINGO! ESTAS DENTRO</font></h1>
+        <h2 style="color: orange;">Procesando vulnerabilidad SQL...</h2>
+    </center>
+    <p class="rojo" id="info_robada"></p>
+    <p style="color: red; font-size: 24px; font-weight: bold;">SELECT * FROM usuarios WHERE password = <span id="pass_expuesto" style="background: yellow;"></span>;</p>
+    <p class="rojo">Gracias por regalarnos tus datos. Ya los vendimos.</p>
+</div>
 
 <script>
-var foco = 'n1';
+var foco = '';
 var edad = 0;
+
+function mostrarTeclado(campo) {
+    foco = campo;
+    document.getElementById('teclado_maldito').style.display = 'block';
+}
+
+function cerrarTeclado() {
+    document.getElementById('teclado_maldito').style.display = 'none';
+}
 
 function tecla(letra) {
     var caja = document.getElementById(foco);
@@ -73,15 +127,45 @@ function tirarDado() {
     document.getElementById('edad_num').innerHTML = edad;
 }
 
+function actualizarTel() {
+    document.getElementById('num_tel').innerHTML = document.getElementById('telefono').value;
+}
+
+function trampaScroll() {
+    var caja = document.getElementById('tyc');
+    if(caja.scrollTop > 50) {
+        caja.scrollTop = 0;
+    }
+}
+
+function huir() {
+    var btn = document.getElementById('btn_entrar');
+    var x = Math.floor(Math.random() * 300) - 150;
+    var y = Math.floor(Math.random() * 300) - 150;
+    btn.style.transform = "translate(" + x + "px, " + y + "px)";
+}
+
 function entrar() {
+    if(document.getElementById('captcha').value != "1") {
+        alert("Captcha incorrecto. Eres un robot.");
+        return;
+    }
+
     var nom = document.getElementById('n1').value;
     var pass = document.getElementById('clv').value;
+    var pais = document.getElementById('pais').value;
+    var tel = document.getElementById('telefono').value;
     
-    var infoBaseDatos = "INSERT INTO usuarios (nombre, clave, edad) VALUES ('" + nom + "', '" + pass + "', " + edad + ");";
+    document.getElementById('pantalla1').style.display = 'none';
+    document.getElementById('pantalla2').style.display = 'block';
     
-    var diasVividos = edad * 365;
+    document.getElementById('pass_expuesto').innerHTML = "'" + pass + "'";
     
-    alert("¡Bienvenido! Hemos guardado tu información. \n\nCalculamos que has vivido aproximadamente " + diasVividos + " días.\n\nPor cierto, esta es la consulta que enviaremos a la base de datos (seguridad nivel experto):\n" + infoBaseDatos);
+    var info = "Hola " + nom + ".<br>Sabemos que tienes " + edad + " años.<br>";
+    info += "Te llamaremos al " + tel + " desde " + pais + ".<br>";
+    info += "Tus dias vividos son: " + (edad * 365) + ".";
+    
+    document.getElementById('info_robada').innerHTML = info;
 }
 </script>
 
