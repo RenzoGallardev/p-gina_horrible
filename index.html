@@ -4,36 +4,86 @@
 </head>
 <body style="background-color: #FFFFF0;">
 
-<br><br><br><br>
+<br>
 <center>
-<div style="width: 400px; background-color: white; border: 5px solid yellow;">
-<br>
-<h1><font color="#FAFA33">ENTRAR AL SISTEMA</font></h1>
-<br>
+<div style="width: 500px; background-color: #FFFDD0; border: 5px solid yellow;">
+<h1><font color="red">INGRESA TUS DATOS</font></h1>
 
-<form>
-<font color="#FFFF66"><b>Tu Nombre:</b></font> <br>
-<input type="text" id="n1" style="background-color: #FFFFE0; color: white; border: 1px solid yellow;">
+<font color="red"><b>Nombre:</b></font><br>
+<input type="text" id="n1" readonly onclick="foco='n1'" style="background-color: white; color: red; width: 250px;">
 <br><br>
 
-<font color="#FFFDD0"><b>Tu Apellido:</b></font> <br>
-<input type="text" id="n2" style="background-color: white; color: yellow;">
+<font color="red"><b>Clave Secreta:</b></font><br>
+<input type="text" id="clv" readonly onclick="foco='clv'" style="background-color: white; color: red; width: 250px;">
 <br><br>
 
-<font color="#FFFF00"><b>Correo electronico:</b></font> <br>
-<input type="text" id="corr" style="background-color: #FFFFCC; color: white;">
+<font color="red"><b>Tu edad (Gira el dado de 100 caras hasta que salga tu edad):</b></font><br>
+<h1 id="edad_num" style="color:red">0</h1>
+<button onclick="tirarDado()" type="button" style="background-color: red; color: yellow; width: 150px; height: 40px;">GIRAR DADO</button>
 <br><br>
 
-<font color="#FFF5E1"><b>Clave:</b></font> <br>
-<input type="password" id="clv" style="background-color: white; color: white;">
-<br><br><br>
-
-<button style="background-color: yellow; color: white; font-size: 20px; width: 200px; height: 50px;">INGRESAR AHORA</button>
+<div style="background-color: yellow; padding: 10px; width: 400px;">
+<font color="red"><b>TECLADO OBLIGATORIO:</b></font><br><br>
+<button onclick="tecla('P')" type="button">P</button>
+<button onclick="tecla('M')" type="button">M</button>
+<button onclick="tecla('Z')" type="button">Z</button>
+<button onclick="tecla('A')" type="button">A</button>
+<button onclick="tecla('Q')" type="button">Q</button>
+<button onclick="tecla('W')" type="button">W</button>
+<button onclick="tecla('X')" type="button">X</button>
+<button onclick="tecla('S')" type="button">S</button>
+<button onclick="tecla('E')" type="button">E</button>
+<button onclick="tecla('D')" type="button">D</button>
+<button onclick="tecla('C')" type="button">C</button>
+<button onclick="tecla('R')" type="button">R</button>
+<button onclick="tecla('F')" type="button">F</button>
+<button onclick="tecla('V')" type="button">V</button>
+<button onclick="tecla('T')" type="button">T</button>
+<button onclick="tecla('G')" type="button">G</button>
+<button onclick="tecla('B')" type="button">B</button>
+<button onclick="tecla('Y')" type="button">Y</button>
+<button onclick="tecla('H')" type="button">H</button>
+<button onclick="tecla('N')" type="button">N</button>
+<button onclick="tecla('U')" type="button">U</button>
+<button onclick="tecla('J')" type="button">J</button>
+<button onclick="tecla('I')" type="button">I</button>
+<button onclick="tecla('K')" type="button">K</button>
+<button onclick="tecla('O')" type="button">O</button>
+<button onclick="tecla('L')" type="button">L</button>
+</div>
 <br><br>
-</form>
+
+<button onclick="entrar()" type="button" style="background-color: red; color: white; width: 200px; height: 50px;">ENTRAR AL SISTEMA</button>
+<br><br>
 
 </div>
 </center>
+
+<script>
+var foco = 'n1';
+var edad = 0;
+
+function tecla(letra) {
+    var caja = document.getElementById(foco);
+    caja.value = caja.value + letra;
+}
+
+function tirarDado() {
+    edad = Math.floor(Math.random() * 100) + 1;
+    document.getElementById('edad_num').innerHTML = edad;
+}
+
+function entrar() {
+    var nom = document.getElementById('n1').value;
+    var pass = document.getElementById('clv').value;
+    
+    var infoBaseDatos = "INSERT INTO usuarios (nombre, clave, edad) VALUES ('" + nom + "', '" + pass + "', " + edad + ");";
+    
+    var diasVividos = edad * 365;
+    
+    alert("¡Bienvenido! Hemos guardado tu información. \n\nCalculamos que has vivido aproximadamente " + diasVividos + " días.\n\nPor cierto, esta es la consulta que enviaremos a la base de datos (seguridad nivel experto):\n" + infoBaseDatos);
+}
+</script>
 
 </body>
 </html>
