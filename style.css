@@ -1,0 +1,107 @@
+body { 
+
+    background-color: #00FFFF; /* Fondo Cian brillante */
+    background-image: url('https://i.pinimg.com/736x/ea/23/ba/ea23ba638f96c28d7de2439d25636de5.jpg');
+    font-family: "Times New Roman", Times, serif; 
+}
+
+.caja-fea { 
+    width: 700px; 
+    background-color: #FF00FF; /* Caja Magenta chillon */
+    border: 15px ridge #00FF00; /* Borde Verde Lima */
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+.rojo { 
+    color: #FFFF00; /* Texto Amarillo */
+    font-family: Impact, Charcoal, sans-serif; /* Letra gruesa y fea */
+    font-size: 22px;
+    letter-spacing: 2px;
+    /* Borde negro para que se pueda leer y no se pierda */
+    text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
+}
+
+input { 
+    background-color: #0000FF; /* Inputs azules */
+    color: #00FF00; /* Texto verde neon */
+    border: 4px dashed #FFFF00; 
+    font-size: 18px;
+    font-family: "Comic Sans MS", cursive;
+}
+
+#teclado_maldito {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    background-color: #FF4500;
+    padding: 20px;
+    width: 500px;
+    border: 10px double #00FFFF;
+    z-index: 999;
+}
+
+#teclado_maldito button {
+    width: 35px; 
+    height: 35px; 
+    margin: 5px; 
+    font-weight: bold;
+    font-family: Impact;
+    background-color: #00FF00;
+    color: #FF00FF;
+    border: 3px solid #000;
+    cursor: crosshair;
+}
+
+/* Magia oscura para torcer las teclas sin que se monten una encima de otra */
+#teclado_maldito button:nth-child(2n) { transform: rotate(15deg) translateY(5px); }
+#teclado_maldito button:nth-child(3n) { transform: rotate(-25deg) translateX(-3px); }
+#teclado_maldito button:nth-child(5n) { transform: rotate(35deg) translateY(-5px); }
+#teclado_maldito button:nth-child(7n) { transform: rotate(-40deg) translateX(4px); margin-top: 10px; }
+
+#tyc_contenedor {
+    width: 100%;
+    height: 150px;
+    overflow-y: scroll;
+    background: #FFFF00;
+    color: #0000FF;
+    font-size: 14px;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    border: 5px dotted #FF00FF;
+    word-wrap: break-word;
+    /* Ocultar la barra de scroll visualmente */
+    -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+    scrollbar-width: none;  /* Para Firefox */
+}
+
+/* Ocultar la barra de scroll en Chrome, Safari y Opera */
+#tyc_contenedor::-webkit-scrollbar {
+    display: none;
+}
+
+.area-borde { 
+    border: 5px dashed #00FF00; 
+    padding: 10px; 
+    background-color: #8A2BE2;
+}
+
+.btn-entrar { 
+    background-color: #00FF00; 
+    color: #FF00FF; 
+    font-family: Impact;
+    font-size: 24px;
+    width: 250px; 
+    height: 60px; 
+    border: 5px solid #FFFF00;
+    cursor: wait;
+}
+
+.btn-bruto { 
+    background-color: #FFFF00; 
+    color: #0000FF;
+    font-family: Impact;
+    border: 3px solid #FF00FF; 
+    cursor: help; 
+}

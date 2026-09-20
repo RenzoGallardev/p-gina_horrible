@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Login super seguro 6.0</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="pantalla1" class="caja-fea">
+    <center><h1><font color="#00FF00" style="font-family: Impact; text-shadow: 2px 2px #000;">SISTEMA DE INGRESO</font></h1></center>
+
+    <span class="rojo">Nombre:</span><br>
+    <input type="text" id="n1" readonly onclick="mostrarTeclado('n1')" style="width: 250px;"><br><br>
+
+    <span class="rojo">Clave Secreta:</span><br>
+    <input type="password" id="clv" readonly onclick="mostrarTeclado('clv')" style="width: 250px;"><br><br>
+
+    <span class="rojo">Tu edad (Gira el dado de 100 caras):</span><br>
+    <h1 id="edad_num" style="color:#00FF00; text-shadow: 2px 2px #000; margin: 5px 0;">0</h1>
+    <button onclick="tirarDado()" type="button" style="background-color: #0000FF; color: #FFFF00; font-size: 14px; padding: 5px; font-family: Impact;">GIRAR DADO</button>
+    <br><br>
+
+    <span class="rojo">Numero de telefono:</span><br>
+    <input type="text" id="prefijo" readonly onclick="mostrarTeclado('prefijo')" style="width: 80px;" value="0414">
+    <span class="rojo">-</span>
+    <input type="range" id="telefono_resto" min="0000000" max="9999999" value="5000000" oninput="actualizarTel()" style="width: 300px;">
+    <span id="tel_display" class="rojo">5000000</span>
+    <br><br>
+
+    <span class="rojo">Terminos y condiciones (Scrollea a ciegas hasta el final):</span><br>
+    <div id="tyc_contenedor" onscroll="verificarScroll()">
+        <span id="texto_largo"></span>
+    </div>
+    <input type="checkbox" id="acepto" disabled> <span class="rojo" style="font-size: 16px;">He leido y acepto las consecuencias.</span>
+    <br><br>
+
+    <div id="area_integral" class="area-borde">
+        <span class="rojo">CAPTCHA OBLIGATORIO: Resuelve esto</span><br>
+        <h2 style="color:#FFFF00; text-shadow: 2px 2px #000;">&int;<sub>0</sub><sup>&infin;</sup> ( e<sup>-x</sup> * cos(x<sup>2</sup>) / ln(x+2) ) dx = ?</h2>
+        <input type="text" id="captcha" readonly onclick="mostrarTeclado('captcha')">
+        <br><br>
+        <button onclick="soyBruto()" type="button" class="btn-bruto">SOY BRUTO NO PUEDO</button>
+    </div>
+
+    <div id="area_facil" class="area-borde" style="display: none;">
+        <span class="rojo">CAPTCHA:</span><br>
+        <span class="rojo">¿Cuanto es 1 + 1?</span><br>
+        <input type="text" id="captcha_facil" readonly onclick="mostrarTeclado('captcha_facil')">
+    </div>
+    <br>
+
+    <center><button id="btn_entrar" onclick="entrar()" type="button" class="btn-entrar">ENTRAR AL SISTEMA</button></center>
+</div>
+
+<div id="teclado_maldito">
+    <span class="rojo" style="font-size: 28px;">TECLADO:</span><br>
+    <button onclick="tecla('P')">P</button> <button onclick="tecla('7')">7</button> <button onclick="tecla('Z')">Z</button>
+    <button onclick="tecla('A')">A</button> <button onclick="tecla('Q')">Q</button> <button onclick="tecla('1')">1</button>
+    <button onclick="tecla('W')">W</button> <button onclick="tecla('X')">X</button> <button onclick="tecla('S')">S</button>
+    <button onclick="tecla('E')">E</button> <button onclick="tecla('D')">D</button> <button onclick="tecla('C')">C</button>
+    <button onclick="tecla('R')">R</button> <button onclick="tecla('F')">F</button> <button onclick="tecla('V')">V</button>
+    <button onclick="tecla('T')">T</button> <button onclick="tecla('G')">G</button> <button onclick="tecla('B')">B</button>
+    <button onclick="tecla('Y')">Y</button> <button onclick="tecla('H')">H</button> <button onclick="tecla('N')">N</button>
+    <button onclick="tecla('U')">U</button> <button onclick="tecla('J')">J</button> <button onclick="tecla('I')">I</button>
+    <button onclick="tecla('M')">M</button> <button onclick="tecla('K')">K</button> <button onclick="tecla('O')">O</button>
+    <button onclick="tecla('L')">L</button> <button onclick="tecla('2')">2</button> <button onclick="tecla('3')">3</button>
+    <button onclick="tecla('4')">4</button> <button onclick="tecla('5')">5</button> <button onclick="tecla('6')">6</button>
+    <button onclick="tecla('8')">8</button> <button onclick="tecla('9')">9</button> <button onclick="tecla('0')">0</button>
+    <button onclick="borrarLetra()" style="width: 80px; background-color: #0000FF; color: #FFFF00;">Eliminar</button>
+    <br><br>
+    <button onclick="cerrarTeclado()" style="font-size: 12px; width: 120px; background-color: red; color: white;">Cerrar teclado</button>
+</div>
+
+<div id="pantalla2" class="caja-fea" style="display: none;">
+    <center>
+        <h1 style="font-family: Impact; color: #00FF00; text-shadow: 3px 3px #000;">DATOS REGISTRADOS</h1>
+    </center>
+    <p class="rojo" id="info_robada"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
